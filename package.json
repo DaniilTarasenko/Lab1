@@ -1,0 +1,15 @@
+{
+  "name": "dan",
+  "version": "1.0.0",
+  "description": "Первая лабораторная",
+  "main": "test.js",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
