@@ -101,6 +101,38 @@ name: string; // min: 1; max: 160 символов - новое название
 
 ___
 
+| Сортировка файлов и папок | |
+| --- | --- |
+| Endpoint | POST /api/sorting |
+| Description | Метод для сортировки файлов и папок по алфавиту |
+| Request | interface Request {
+folderId: string; // id папки, файлы и папки в которой требуется отсортировать
+orderBy: "name" | "date"; // Параметр сортировки: "name" - по имени, "date" - по дате последнего изменения
+order: "asc" | "desc"; // Направление сортировки: "asc" - по возрастанию, "desc" - по убыванию
+} |
+| Response | interface Response {
+files: Array<File>; // Отсортированный список файлов
+folders: Array<Folder>; // Отсортированный список папок
+};
+
+interface File {
+name: string; // Имя файла
+// Другие свойства файла
+}
+
+interface Folder {
+name: string; // Имя папки
+// Другие свойства папки
+}; |
+| Errors |
+• ERR_USER_NOT_AUTH - пользователь не авторизован в приложении
+• ERR_VALIDATION_FAILED - переданы невалидные входные параметры
+• ERR_FOLDER_NOT_FOUND - не найдена указанная папка
+• ERR_ACCESS_DENIED - ошибка доступа при попытке выполнить сортировку
+|
+
+___
+
 | Удаление задачи |  |
 | --- | --- |
 | Endpoint | POST /api/todo/deleteTask |
