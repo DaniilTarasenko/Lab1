@@ -10,7 +10,7 @@ const config = {
       password: 'yourPasswordHere', // замените это на пароль от своего пользователя
       port: 3000, // порт базы данных
 			ssl: {
-			  ca: fs.readFileSync('/ca-certificate-test.crt'), // Путь к файлу ca.crt
+			  ca: fs.readFileSync('/lab3/ca-certificate-test.crt'), // Путь к файлу ca.crt
 			}
     },
   }, 
