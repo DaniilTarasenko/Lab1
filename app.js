@@ -45,6 +45,7 @@ app.post('/addTask', (req, res) => {
     res.status(400).send('Не указано имя задачи');
     return;
   }
+});
 
 app.get('/createTasksTable', (req, res) => {
   const createTableSql = 'CREATE TABLE IF NOT EXISTS tasks (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL)';
