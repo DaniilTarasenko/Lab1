@@ -115,19 +115,6 @@ app.delete('/tasks/:id', (req, res) => {
   });
 });
 
-// Получение всех задач
-app.get('/tasks', (req, res) => {
-  const selectAllTasksSql = 'SELECT * FROM tasks'; // SQL запрос для получения всех задач
-  dbConnection.query(selectAllTasksSql, (err, result) => {
-    if (err){
-      console.error('Ошибка при выполнении запроса:'+ err.stack);
-      res.status(500).send('Ошибка сервера при выполнении запроса');
-      return;
-    }
-    res.send(result); // Отправляем список задач в качестве ответа
-  });
-});
-
   // SQL-запрос для добавления записи с указанным именем в таблицу tasks
   const sqlQuery = `INSERT INTO tasks (name) VALUES ('${taskName}')`;
 
