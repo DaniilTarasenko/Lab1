@@ -63,76 +63,6 @@ ___
 
 ___
 
-| Редактирование задачи | |
-| --- | --- |
-| Endpoint | POST /api/todo/editTask |
-| Description | Метод для редактирования задачи |
-| Request | interface Request {
-taskId: string; // идентификатор задачи для редактирования
-name?: string; // min: 1; max: 160 символов - новое название задачи, если указано
-folderId?: string; // id новой папки. Если не указано, задача остается в текущей папке
-description?: string; // min: 1 если не undefined; max: 4096 символов - новое описание задачи, если указано
-} |
-| Response | interface Response {
-// ничего не возвращается после редактирования задачи
-}; |
-| Errors |
-• ERR_USER_NOT_AUTH - пользователь не авторизован в приложении
-• ERR_VALIDATION_FAILED - переданы невалидные входные параметры
-• ERR_TASK_NOT_FOUND - задача с указанным идентификатором не найдена
-
-___
-
-| Редактирование папки | |
-| --- | --- |
-| Endpoint | POST /api/todo/editFolder |
-| Description | Метод для редактирования папки |
-| Request | interface Request {
-folderId: string; // идентификатор папки для редактирования
-name: string; // min: 1; max: 160 символов - новое название папки
-} |
-| Response | interface Response {
-// ничего не возвращается после редактирования папки
-}; |
-| Errors |
-• ERR_USER_NOT_AUTH - пользователь не авторизован в приложении
-• ERR_VALIDATION_FAILED - переданы невалидные входные параметры
-• ERR_FOLDER_NOT_FOUND - указанная папка не найдена
-
-___
-
-| Сортировка файлов и папок | |
-| --- | --- |
-| Endpoint | POST /api/sorting |
-| Description | Метод для сортировки файлов и папок по алфавиту |
-| Request | interface Request {
-folderId: string; // id папки, файлы и папки в которой требуется отсортировать
-orderBy: "name" | "date"; // Параметр сортировки: "name" - по имени, "date" - по дате последнего изменения
-order: "asc" | "desc"; // Направление сортировки: "asc" - по возрастанию, "desc" - по убыванию
-} |
-| Response | interface Response {
-files: Array<File>; // Отсортированный список файлов
-folders: Array<Folder>; // Отсортированный список папок
-};
-
-interface File {
-name: string; // Имя файла
-// Другие свойства файла
-}
-
-interface Folder {
-name: string; // Имя папки
-// Другие свойства папки
-}; |
-| Errors |
-• ERR_USER_NOT_AUTH - пользователь не авторизован в приложении
-• ERR_VALIDATION_FAILED - переданы невалидные входные параметры
-• ERR_FOLDER_NOT_FOUND - не найдена указанная папка
-• ERR_ACCESS_DENIED - ошибка доступа при попытке выполнить сортировку
-|
-
-___
-
 | Удаление задачи |  |
 | --- | --- |
 | Endpoint | POST /api/todo/deleteTask |
@@ -201,24 +131,22 @@ ___
 
 ___
 
-|| Авторизация | |
+| Авторизация |  |
 | --- | --- |
 | Endpoint | POST /api/auth |
 | Description | Метод для авторизации |
 | Request | interface Request {
-email: string; // min: 6; max: 320 символов
-password: string; // min: 8; max: 160 символов
+  first_name: string; // min: 1; max: 160 символов
+  last_name: string; // min: 1; max: 160 символов
+  password: string; // min: 8; max: 160 символов
 } |
 | Response | interface Response {
-token: string; // Токен доступа, используется для аутентификации пользователя в последующих запросах
+  GET /api/todo // при успешной авторизации выбрасывает на главную страницу
 }; |
-| Errors |
-• ERR_USER_NOT_AUTH - пользователь не авторизован в приложении
+| Errors | • ERR_USER_NOT_AUTH - пользователь не авторизован в приложении
 • ERR_VALIDATION_FAILED - переданы невалидные входные параметры
-• ERR_INCORRECT_PASSWORD - неверный пароль
-• ERR_USER_NOT_FOUND - пользователь с указанным email не найден
-• ERR_EMAIL_NOT_VERIFIED - email не подтвержден
-• ERR_TOO_MANY_ATTEMPTS - слишком много попыток входа, попробуйте позже |
+• ERR_USER_NOT_FOUND - пользователь не найден |
+
 
 ## **Детальное описание ТР**
 
