@@ -2,11 +2,12 @@
 const express = require('express');
 const mysql = require('mysql');
 const config = require('/lab3/index.js');
-
+const cors = require('cors');
 const app = express();
 const port = config.port;
 
 app.use(express.json());
+app.use(cors());
 
 // Конфигурация подключения к базе данных
 const dbConnection = mysql.createConnection(config.db.mysql);
