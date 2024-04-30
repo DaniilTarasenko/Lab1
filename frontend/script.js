@@ -1,3 +1,47 @@
+document.addEventListener('DOMContentLoaded', () => {
+  // Обработка формы входа
+  document.getElementById('loginForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    try {
+      const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await response.json();
+      localStorage.setItem('token', data.token); // Сохранение токена в localStorage
+      alert('Вы успешно вошли');
+    } catch (error) {
+      console.error('Ошибка при входе:', error);
+      alert('Ошибка при входе');
+    }
+  });
+
+  // Обработка формы регистрации
+  document.getElementById('registerForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const newUsername = document.getElementById('newUsername').value;
+    const newPassword = document.getElementById('newPassword').value;
+    try {
+      const response = await fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: newUsername, password: newPassword })
+      });
+      alert('Пользователь успешно зарегистрирован');
+    } catch (error) {
+      console.error('Ошибка при регистрации:', error);
+      alert('Ошибка при регистрации');
+    }
+  });
+});
+
 // Функция для загрузки задач с сервера
 function loadTasks() {
 	// Предполагаем, что сервер запущен на localhost:3000
@@ -44,3 +88,5 @@ document.getElementById('taskForm').addEventListener('submit', function (event) 
 
 // После загрузки страницы сразу загружаем задачи
 loadTasks();
+
+
