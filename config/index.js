@@ -1,19 +1,17 @@
 // файл ./backend/config/index.js
+const fs = require('fs');
 const config = {
-	db : {
-    mysql : {
-      host     : 'localhost',
-      user     : 'user', // замените на своего пользователя
-      database : 'appdb', // можете заменить 'appdb' на свое название базы данных
-      password : 'yourPasswordHere' // замените это на пароль от своего пользователя
-      port: 25060, // порт базы данных
-			ssl: {
-			  ca: fs.readFileSync('path/ca-certificate-test.crt'), // Путь к файлу ca.crt
-			}
+  db: {
+    postgresql: {
+      host: 'localhost',
+      user: 'man',
+      database: 'postgres',
+      password: 'qwerty',
+      port: 5432, // порт базы данных PostgreSQL по умолчанию
     },
-  }, 
-  port : 3000 // порт на котором будет запущен сервер приложения
-  jwtSecret: 'mysecretkey' // Секретный ключ для подписи и верификации JWT токенов, вы его либо сами генерируете, либо сами придумываете
+  },
+  port: 3000, // порт на котором будет запущен сервер приложения
+  jwtSecret: "mysecretkey"
 };
 
-module.exports =  config;
+module.exports = config;
