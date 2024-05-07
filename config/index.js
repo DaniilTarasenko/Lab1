@@ -1,20 +1,17 @@
-// файл ./config/index.js
+// файл ./backend/config/index.js
 const fs = require('fs');
-
 const config = {
-	db: {
-    mysql : {
+  db: {
+    postgresql: {
       host: 'localhost',
-      user: 'user', // замените на своего пользователя
-      database: 'appdb', // можете заменить 'appdb' на свое название базы данных
-      password: 'yourPasswordHere', // замените это на пароль от своего пользователя
-      port: 3000, // порт базы данных
-			ssl: {
-			  ca: fs.readFileSync('/lab3/ca-certificate-test.crt'), // Путь к файлу ca.crt
-			}
+      user: 'man',
+      database: 'postgres',
+      password: 'qwerty',
+      port: 5432, // порт базы данных PostgreSQL по умолчанию
     },
-  }, 
-  port: 3000 // порт на котором будет запущен сервер приложения
+  },
+  port: 3000, // порт на котором будет запущен сервер приложения
+  jwtSecret: "mysecretkey"
 };
 
-module.exports =  config;
+module.exports = config;
