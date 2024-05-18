@@ -1,7 +1,7 @@
 // файл ./app.js
 const express = require('express');
 const { Pool } = require('pg');
-const config = require('/lab3/index.js');
+const config = require('/config/index.js');
 const cors = require('cors');
 const app = express();
 const port = config.port;
