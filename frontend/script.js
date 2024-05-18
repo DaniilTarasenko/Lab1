@@ -1,3 +1,5 @@
+// файл ./frontend/script.js
+
 // Функция для загрузки задач с сервера
 function loadTasks() {
 	// Предполагаем, что сервер запущен на localhost:3000
@@ -67,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-// Обработка авторизации
   const loginForm = document.getElementById('loginForm');
   const usernameInput = document.getElementById('username');
   const passwordInput = document.getElementById('password');
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return await response.json();
   }
 });
-// конец обработки авторизации
+
   // Обработка формы регистрации
   document.getElementById('registerForm').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -125,6 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Ошибка при регистрации');
     }
   });
+});
+
+//проверка токена
+document.addEventListener('DOMContentLoaded', async function() {
+    const token = location.pathname.split('/').pop(); // Извлечение токена из URL
+
+    try {
+        const response = await fetch(`/confirm/${token}`);
+        const data = await response.text();
+
+        document.getElementById('message').innerText = data;
+    } catch (error) {
+        document.getElementById('message').innerText = 'Ошибка при подтверждении регистрации';
+    }
 });
 
 // После загрузки страницы сразу загружаем задачи
