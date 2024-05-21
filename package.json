@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.11",
     "connect": "^3.7.0",
@@ -18,9 +19,13 @@
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.7",
+    "nodemailer": "^6.9.13",
     "pg": "^8.11.5",
     "pg-promise": "^11.6.0",
     "serve-static": "^1.15.0"
   },
   "description": ""
 }
+
+
+
